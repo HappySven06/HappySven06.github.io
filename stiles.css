@@ -60,7 +60,7 @@ opacity:0.8; /*Tee element pisut läbipaistvaks*/
     border-spacing: 15px;
     width: 100%;
 }
-#attack, #heal{
+.actionButton{
     background-color: #666666;
     width: 25%;
     height: 50px;
