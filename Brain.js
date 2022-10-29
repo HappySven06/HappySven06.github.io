@@ -1,38 +1,101 @@
-function action() //Main function called bt html and player controller
-{
-    let value = document.getElementById("Inpu").value;
+gameOver = false; //Game over
+playerWin = false; //Player won
+enemyWin = false; //Enemy won
 
+pAtacc = false; //Player used atacc
+eAtacc = false; //Enemy used atacc
+pHeal = false; //Player used heal
+eHeal = false; //Enemy used heal
+eSkip = false;
+
+eVas = 110; //Enemy health
+pVas = 100; //Player health
+healsUsed = 0; //Executive enemy heals
+
+let pTotalHealth = []; //Total health used by player
+let eTotalHealth = []; //Total health used by enemy
+let pTotalDamage = []; //Todal damage done by player
+let eTotalDamage = []; //Total damage done by enemy
+
+let pToatalHealthAdded = 0; //Player total health math done (Used for game end screen)
+let eToatalHealthAdded = 0; //Enemy total health math done (Used for game end screen)
+let pToataldamageAdded = 0; //Player total damage math done (Used for game end screen)
+let eToatalDamageAdded = 0; //Enemy total damage math done (Used for game end screen)
+
+let pHealthAdded = 0;
+let eHealthAdded = 0;
+let pDamageAdded = 0;
+let eDamageAdded = 0;
+
+winner = "none"; //Winner of the game (Used for game end screen)
+
+function heal()
+{
     if (gameOver == false)
     {
-        if (value == "1")
+        if (pVas == 90)
         {
+            //heal
+            pVas -= 10;
+            player.heal();
+            pHeal = true; 
+        }
+        if (pVas == 100)
+        {
+            //atacc
             enemy.damage();
             pAtacc = true;
         }
-        if (value == "2")
+        if (pVas < 90)
         {
-            if (pVas == 90)
-            {
-                //heal
-                pVas -= 10;
-                player.heal();
-                pHeal = true; 
-            }
-            if (pVas == 100)
-            {
-                //atacc
-                enemy.damage();
-                pAtacc = true;
-            }
-            if (pVas < 90)
-            {
-                //heal
-                player.heal();
-                pHeal = true;
-            }
+            //heal
+            player.heal();
+            pHeal = true;
         }
     }
 
+    action();
+}
+
+function eheal()
+{
+    if (eVas == 100)
+    {
+        //heal
+        eVas -= 10;
+        enemy.heal();
+        eHeal = true;
+        healsUsed ++;
+    }
+    if (eVas == 110)
+    {
+        //atacc
+        player.damage();
+        eAtacc = true;
+        healsUsed ++;
+    }
+    if (eVas <= 90)
+    {
+        //heal
+        enemy.heal();
+        eHeal = true;
+        healsUsed ++;
+    }
+}
+
+function attack()
+{
+    if (gameOver == false)
+    {
+        enemy.damage();
+        pAtacc = true;
+    }
+
+    action();
+}
+
+function action() //Main function called bt html and player controller
+{
     enemyAction();
 
     log();
@@ -66,38 +129,61 @@ function enemyAction() //Enemy moves
     if (gameOver == false)
     {
         min = 1;
-        max = 3;
+        max = 10;
 
-        var Vastus = Math.random() * (max - min) + min;
-        vastus = parseInt(Vastus)
-        Math.trunc(vastus);
+        var Rand = Math.random() * (max - min) + min;
+        Rand = parseInt(Rand)
+        Math.trunc(Rand);
+
+        vastus = Rand % 2;
+        console.log(vastus);
 
         if (vastus == 1)
         {
             //atacc
             player.damage();
             eAtacc = true;
+
+            if (healsUsed == 2)
+            {
+                healsUsed = 0;
+            }
         }
-        if (vastus == 2)
+        if (vastus == 0)
         {
-            if (eVas == 100)
+            if (healsUsed !== 2)
             {
-                //heal
-                eVas -= 10;
-                enemy.heal();
-                eHeal = true; 
+                if (pHeal == true)
+                {
+                    min = 1;
+                    max = 10;
+
+                    var Rand2 = Math.random() * (max - min) + min;
+                    Rand2 = parseInt(Rand2)
+                    Math.trunc(Rand2);
+
+                    vastus2 = Rand2 % 2;
+
+                    if (vastus2 == 1)
+                    {
+                        //atacc
+                        player.damage();
+                        eAtacc = true;
+                        healsUsed ++;
+                    }
+                    if (vastus2 == 0)
+                    {
+                        eheal();
+                    }
+                }
+                else 
+                {
+                    eheal();
+                }
             }
-            if (eVas == 110)
+            else
             {
-                //atacc
-                player.damage();
-                eAtacc = true;
-            }
-            if (eVas < 90)
-            {
-                //heal
-                enemy.heal();
-                eHeal = true;
+                healsUsed = 0;
             }
         }
     }
@@ -128,12 +214,18 @@ function log() //Round activity log
     {
         console.log("Enemy heal");
     }
+    if (eSkip == true)
+    {
+        console.log("Enemy skiped")
+    }
+    console.log("Enemy heals used: " + healsUsed)
     console.log("----------");
 
     pAtacc = false;
     eAtacc = false
     pHeal = false;
     eHeal = false;
+    pSkip = false;
 }
 
 function gameEnded() //Game ended scores
@@ -141,7 +233,7 @@ function gameEnded() //Game ended scores
     pToatalHealthAdded = 0; 
     eToatalHealthAdded = 0; 
     pToataldamageAdded = 0; 
-    eToatalDamageAdded = 0; 
+    eToatalDamageAdded = 0;
     winner = "none";
 
     pHealthAdded = pTotalHealth.forEach(function(add){pToatalHealthAdded += add});
@@ -191,6 +283,7 @@ function playAgain()
     pVas = 100; //Player health
     player.health = 100; //Player health
     enemy.health = 110; //Enemy health
+    healsUsed = 0;
 
     pTotalHealth.length = 0; //Total health used by player
     eTotalHealth.length = 0; //Total health used by enemy
@@ -211,29 +304,6 @@ function playAgain()
     document.getElementById("endScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "block";
 }
-
-gameOver = false; //Game over
-playerWin = false; //Player won
-enemyWin = false; //Enemy won
-
-pAtacc = false; //Player used atacc
-eAtacc = false; //Enemy used atacc
-pHeal = false; //Player used heal
-eHeal = false; //Enemy used heal
-
-eVas = 110; //Enemy health
-pVas = 100; //Player health
-
-var pTotalHealth = []; //Total health used by player
-var eTotalHealth = []; //Total health used by enemy
-var pTotalDamage = []; //Todal damage done by player
-var eTotalDamage = []; //Total damage done by enemy
-
-pToatalHealthAdded = 0; //Player total health math done (Used for game end screen)
-eToatalHealthAdded = 0; //Enemy total health math done (Used for game end screen)
-pToataldamageAdded = 0; //Player total damage math done (Used for game end screen)
-eToatalDamageAdded = 0; //Enemy total damage math done (Used for game end screen)
-winner = "none"; //Winner of the game (Used for game end screen)
 
 player = {
     health: 100,

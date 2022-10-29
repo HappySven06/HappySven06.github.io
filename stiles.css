@@ -22,6 +22,10 @@ html {
   h3{
       font-size:24px;
   }
+a:hover{ /*Hiirega lingi peale liikumisel tekkiv effekt*/
+opacity:0.8; /*Tee element pisut läbipaistvaks*/
+}
+
 .jalus {
     text-align: center;
     background-color: #FFF;
@@ -55,4 +59,14 @@ html {
 .Table {
     border-spacing: 15px;
     width: 100%;
+}
+#attack, #heal{
+    background-color: #666666;
+    width: 25%;
+    height: 50px;
+    color:rgb(255, 255, 255);
+    font-size: 20px;
+}
+.actionButton:hover {
+    background-color: rgb(196, 196, 196); /**/
 }
