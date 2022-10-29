@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>checkTemp interface</title>
+		<link rel="stylesheet" href="Stiles.css" type="text/css">
+	</head>
+
+	<body>
+		<div id="gameScreen">
+			<center>
+				<h1>Web game</h1>
+			</center>
+	
+			<div class="Terminal">
+				<p id="PlayerHealth">Player health: 100</p>
+				<p id="EnemyHealth">Enemy health: 110</p>
+	
+				<canvas>
+	
+				</canvas>
+			</div>
+	
+			<div class="Actions">
+				<h1>Actions</h1>
+	
+				<p>1. Attack</p>
+				<p>2. Heal</p>
+	
+				<input id=Inpu></input>
+				<button type="button" onclick="action();">Submit</button>
+			</div>
+		</div>
+
+		<div id="endScreen">
+			<center>
+				<h1>Web game</h1>
+			</center>
+	
+			<div class="Terminal">
+				<p id="GameWinner">test</p>
+	
+				<table class="Table">	
+					<tr colspan="2">
+						<td><h3>Damage given</h3></td>
+					</tr>
+					<tr>
+						<td id="PlayerScoreDamage" class="PlayerScore">Player</td>
+						<td id="EnemyScoreDamage" class="EnemyScore">Enemy</td>
+					</tr>
+					<tr colspan="2">
+						<td><h3>Heath used</h3></td>
+					</tr>
+					<tr>
+						<td id="PlayerScoreHealth" class="PlayerScore">Player</td>
+						<td id="EnemyScoreHealth" class="EnemyScore">Enemy</td>
+					</tr>
+				</table>
+			</div>
+	
+			<div class="Actions">
+				<h1>Actions</h1>
+	
+				<button type="button" onclick="playAgain()">Play again</button>
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript" src="../Brain.js"></script>
+</html>
