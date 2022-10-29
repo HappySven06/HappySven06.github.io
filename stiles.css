@@ -1,99 +1,58 @@
+#endScreen {
+    display: none;
+}
 html {
     scroll-behavior: smooth; /*Sujuv scroll siht/target elemendini*/
-}
-body {
-    padding: 0;
-    margin: 0;
+  }
+  body {
+      padding: 0;
+      margin: 0;
+      color: #842f23;
+      font-family: sans-serif;
+      font-size: 18px;
+      background-color: #EEE;
+  }
+  h1 {
+      color: #000000;
+      font-size: 38px;
+  }
+  h2 {
+      font-size: 28px;
+  }
+  h3{
+      font-size:24px;
+  }
+.jalus {
+    text-align: center;
+    background-color: #FFF;
+    padding: 25px 0;
+    box-shadow: 5px 5px 15px #00000057;
     color: #842f23;
-    font-family: sans-serif;
     font-size: 18px;
-    background-color: #EEE;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
 }
-h1 {
-    color: #000000;
-    font-size: 38px;
+.jalus a {
+    color: #ef5842;
+    text-decoration: none;
 }
-h2 {
-    font-size: 28px;
-}
-h3{
-    font-size:24px;
-}
-a:hover{
-    opacity:0.8;
-}
-
-.terminal {
+.Terminal, .Actions {
     text-align: center;
     background-color: #FFF;
     padding: 25px 25px;
-    margin: 25px 20%;
+    margin: 5px 200px;
     box-shadow: 5px 5px 15px #00000057;
     color: #842f23;
     font-size: 18px;
 }
-
-.navbar {
-    overflow: hidden;
-    background-color: #ef5842;
-    font-family: Arial;
-}
-
-.navbar a {
+#PlayerHealth, .PlayerScore {
     float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
 }
-
-.dropdown {
-    float: left;
-    overflow: hidden;
+#EnemyHealth, .EnemyScore {
+    float: right;
 }
-
-
-.dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color:#333 ;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #ef5842;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    float: none;
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-/* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
-    background-color:#333;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
+.Table {
+    border-spacing: 15px;
+    width: 100%;
 }
