@@ -8,36 +8,23 @@
 		<link rel="stylesheet" href="Stiles.css" type="text/css">
 	</head>
 
-	<body>
+	<body onload="TurnRandomiser()">
 		<div class="header" id="myHeader">
 			<div class="navbar">
-				<a onclick="mainMenue();">Menu</a>
+				<a href="Index.html">Menu</a>
 			</div>
 		</div>
 
-		<div class="screen" id="mainMenue">
-			<center>
-				<h1>Web game</h1>
-			</center>
-			
-			<div class="Terminal">
-				<h2>How to play</h2>
-
-				<p>The goal of the game is to defeat the enemy by attacking. You will be given two actions: attack and heal. Attack will do 10 damage to the enemy and heal will give you 20 health.</p>
-			
-				<button type="button" class="actionButton" id="attack" onclick="normalPlay();">1 V E</button>
-				<button type="button" class="actionButton" onclick="window.location.href='playerVersus.html'">1 V 1</a>
-			</div>
-		</div>
-
-		<div class="screen" id="gameScreen">
+		<div class="screen" id="gameScreenVersus">
 			<center>
 				<h1>Web game</h1>
 			</center>
 	
 			<div class="Terminal">
-				<p id="PlayerHealth">Player health: 100</p>
-				<p id="EnemyHealth">Enemy health: 110</p>
+                <p id="PlayerTurns">h</p>
+
+				<p id="PlayerHealth">Player1 health: 100</p>
+				<p id="EnemyHealth">Player2 health: 100</p>
 	
 				<canvas>
 	
@@ -47,18 +34,8 @@
 			<div class="Actions">
 				<h1>Actions</h1>
 	
-				<button type="button" class="actionButton" id="attack" onclick="attack();">Attack</button>
-				<button type="button" class="actionButton" id="heal" onclick="heal();">Heal</button>
-			</div>
-		</div>
-
-		<div class="screen" id="twoPlayerScreen">
-			<center>
-				<h1>Web game</h1>
-			</center>
-
-			<div class="Terminal">
-				
+				<button type="button" class="actionButton" id="attack" onclick="action(1);">Attack</button>
+				<button type="button" class="actionButton" id="heal" onclick="action(0)">Heal</button>
 			</div>
 		</div>
 
@@ -97,5 +74,5 @@
 	</body>
 	
 	<script type="text/javascript" src="../swichCommands.js"></script>
-	<script type="text/javascript" src="../Index.js"></script>
+	<script type="text/javascript" src="../playerVersus.js"></script>
 </html>

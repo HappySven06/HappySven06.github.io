@@ -96,7 +96,7 @@ function attack()
 
 function action() //Main function called bt html and player controller
 {
-    enemyAction();
+    enemyMediun();
 
     log();
 
@@ -124,7 +124,7 @@ function action() //Main function called bt html and player controller
     }
 }
 
-function enemyAction() //Enemy moves
+function enemyEasy()
 {
     if (gameOver == false)
     {
@@ -179,6 +179,7 @@ function enemyAction() //Enemy moves
                 else 
                 {
                     eheal();
+                    
                 }
             }
             else
@@ -187,6 +188,78 @@ function enemyAction() //Enemy moves
             }
         }
     }
+}
+
+function enemyMediun()
+{
+    if (gameOver == false)
+    {
+        min = 1;
+        max = 10;
+
+        var Rand = Math.random() * (max - min) + min;
+        Rand = parseInt(Rand)
+        Math.trunc(Rand);
+
+        vastus = Rand % 2;
+        console.log(vastus);
+
+        if (vastus == 1)
+        {
+            //atacc
+            player.damage();
+            eAtacc = true;
+
+            if (healsUsed == 2)
+            {
+                healsUsed = 0;
+            }
+        }
+        if (vastus == 0)
+        {
+            if (healsUsed !== 2)
+            {
+                if (pHeal == true)
+                {
+                    min = 1;
+                    max = 10;
+
+                    var Rand2 = Math.random() * (max - min) + min;
+                    Rand2 = parseInt(Rand2)
+                    Math.trunc(Rand2);
+
+                    vastus2 = Rand2 % 2;
+
+                    if (vastus2 == 1)
+                    {
+                        //atacc
+                        player.damage();
+                        eAtacc = true;
+                        healsUsed ++;
+                    }
+                    if (vastus2 == 0)
+                    {
+                        eheal();
+                        healsUsed ++;
+                    }
+                }
+                else 
+                {
+                    eheal();
+                    healsUsed ++;
+                }
+            }
+            else
+            {
+                healsUsed = 0;
+            }
+        }
+    }
+}
+
+function enemyHard()
+{
+    
 }
 
 function log() //Round activity log
@@ -296,10 +369,8 @@ function playAgain()
     eToatalDamageAdded = 0; //Enemy total damaSge math done (Used for game end screen)
     winner = "none"; //Winner of the game (Used for game end screen)
 
-    let header = document.querySelector("#PlayerHealth");
-    header.innerText = "Player health: " + pVas;
-    let headerr = document.querySelector("#EnemyHealth");
-    headerr.innerText = "Enemy health: " + eVas;
+    document.getElementById("#PlayerHealth").textContent = "Player health: " + pVas;
+    document.getElementById("#EnemyHealth").textContent = "Enemy health: " + eVas;
 
     document.getElementById("endScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "block";
