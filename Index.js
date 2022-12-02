@@ -369,8 +369,10 @@ function playAgain()
     eToatalDamageAdded = 0; //Enemy total damaSge math done (Used for game end screen)
     winner = "none"; //Winner of the game (Used for game end screen)
 
-    document.getElementById("#PlayerHealth").textContent = "Player health: " + pVas;
-    document.getElementById("#EnemyHealth").textContent = "Enemy health: " + eVas;
+    let header = document.querySelector("#PlayerHealth");
+    header.innerText = "Player health: " + pVas;
+    let headerr = document.querySelector("#EnemyHealth");
+    headerr.innerText = "Enemy health: " + eVas;
 
     document.getElementById("endScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "block";
