@@ -1,4 +1,4 @@
-gameOver = false; //Game over
+let gameOver = false; //Game over
 playerWin = false; //Player won
 enemyWin = false; //Enemy won
 
@@ -26,6 +26,8 @@ let pHealthAdded = 0;
 let eHealthAdded = 0;
 let pDamageAdded = 0;
 let eDamageAdded = 0;
+
+let LogTimes = 0;
 
 winner = "none"; //Winner of the game (Used for game end screen)
 
@@ -204,6 +206,8 @@ function enemyMediun()
         vastus = Rand % 2;
         console.log(vastus);
 
+        setTimeout(5000);
+
         if (vastus == 1)
         {
             //atacc
@@ -272,24 +276,39 @@ function log() //Round activity log
         console.log("Player atacc");
         eTotalHealth.push(10);
         pTotalDamage.push(10);
+
+        printAction = "<Player> Player attacked";
+        logPrompt(printAction);
     }
     if (pHeal == true)
     {
         console.log("Player heal");
+
+        printAction = "<Enemy> Enemy healed";
+        logPrompt(printAction);
     }
     if (eAtacc == true)
     {
         console.log("Enemy atacc");
         pTotalHealth.push(10);
         eTotalDamage.push(10);
+
+        printAction = "<Enemy> Enemy attacked"
+        logPrompt(printAction);
     }
     if (eHeal == true)
     {
         console.log("Enemy heal");
+
+        printAction = "<Enemy> Enemy healed";
+        logPrompt(printAction);
     }
     if (eSkip == true)
     {
         console.log("Enemy skiped")
+
+        printAction = "<Enemy> Enemy skiped";
+        logPrompt(printAction);
     }
     console.log("Enemy heals used: " + healsUsed)
     console.log("----------");
@@ -299,6 +318,21 @@ function log() //Round activity log
     pHeal = false;
     eHeal = false;
     pSkip = false;
+}
+
+function logPrompt(printAction)
+{
+    if (document.getElementById("LogPrompt").children.length > 3)
+    {
+        document.getElementById("LogPrompt").firstElementChild.remove()
+    }
+
+    const slot = document.createElement("p");
+    slot.setAttribute("id", "Slot"+LogTimes)
+    const slotInf = document.createTextNode(printAction);
+    slot.appendChild(slotInf);
+    const element = document.getElementById("LogPrompt");
+    element.appendChild(slot);
 }
 
 function gameEnded() //Game ended scores
@@ -343,6 +377,11 @@ function gameEnded() //Game ended scores
 
 function playAgain()
 {
+    while (document.getElementById("LogPrompt").children.length > 0)
+    {
+        document.getElementById("LogPrompt").firstElementChild.remove()
+    }
+
     gameOver = false; //Game over
     playerWin = false; //Player won
     enemyWin = false; //Enemy won
@@ -357,6 +396,8 @@ function playAgain()
     player.health = 100; //Player health
     enemy.health = 110; //Enemy health
     healsUsed = 0;
+
+    LogTimes = 0;
 
     pTotalHealth.length = 0; //Total health used by player
     eTotalHealth.length = 0; //Total health used by enemy

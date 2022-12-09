@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Fighting game</title>
-		<link rel="stylesheet" href="stiles.css" type="text/css">
+		<link rel="stylesheet" href="Stiles.css" type="text/css">
 	</head>
 
 	<body>
@@ -25,7 +25,7 @@
 
 				<p>The goal of the game is to defeat the enemy by attacking. You will be given two actions: attack and heal. Attack will do 10 damage to the enemy and heal will give you 20 health.</p>
 			
-				<button type="button" class="actionButton" id="attack" onclick="normalPlay();">1 V E</button>
+				<button type="button" class="actionButton" id="attack" onclick="normalPlay();">1 V A</button>
 				<button type="button" class="actionButton" onclick="window.location.href='playerVersus.html'">1 V 1</a>
 			</div>
 		</div>
@@ -42,6 +42,14 @@
 				<canvas>
 	
 				</canvas>
+			</div>
+
+			<div class="Log">
+				<h1>Action log</h1>
+
+				<div id="LogPrompt">
+
+				</div>
 			</div>
 	
 			<div class="Actions">
@@ -96,6 +104,6 @@
 		</div>
 	</body>
 	
-	<script type="text/javascript" src="swichCommands.js"></script>
-	<script type="text/javascript" src="Index.js"></script>
+	<script type="text/javascript" src="../swichCommands.js"></script>
+	<script type="text/javascript" src="../Index.js"></script>
 </html>
